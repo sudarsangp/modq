@@ -1,0 +1,171 @@
+﻿
+@{
+    ViewBag.Title = "LoginLanding";
+}
+@section styles
+{
+    @Styles.Render("~/Content/customCss/loginLanding.css")
+}
+<div class="col-sm-3 col-md-2 sidebar">
+   
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <span class="glyphicon glyphicon-folder-close">
+                    </span>Quiz by Faculty
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <span class="glyphicon glyphicon-pencil text-primary"></span><a href="#">Engineering</a>
+                            <span class="badge">30</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="glyphicon glyphicon-flash text-success"></span><a href="#">Computing</a>
+                            <span class="badge">15</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="glyphicon glyphicon-file text-info"></span><a href="#">Science</a>
+                            <span class="badge">40</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="glyphicon glyphicon-comment text-success"></span><a href="#">Business</a>
+                            <span class="badge">25</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    <span class="glyphicon glyphicon-th">
+                    </span>Term Modules
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <a href="">MA1505</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="">EG2401</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="">CS1231</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="">CG1101</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                    <span class="glyphicon glyphicon-user">
+                    </span>New Modules
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <a href="">GEK1001</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="">EE4210</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                    <span class="glyphicon glyphicon-file">
+                    </span>Reports
+                </a>
+            </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <span class="glyphicon glyphicon-usd"></span><a href="">Overall Scores</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="glyphicon glyphicon-user"></span><a href="">Term Score</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="glyphicon glyphicon-tasks"></span><a href="">Faculty Score</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h2>LoginLanding</h2>
+</div>
+
+@*<div class="nav nav-sidebar">
+            <div><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Quiz by Faculty</a></div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div><a href="#">Engineering</a></div>
+                <div><a href="#">Computing</a></div>
+            <div><a href="#">Science</a></div>
+                </div>
+    </div>
+    <ul class="nav nav-sidebar">
+        <li><a href="">Semester Modules</a></li>
+        <li><a href="">MA1505</a></li>
+        <li><a href="">EG2401</a></li>
+        <li><a href="">CS1231</a></li>
+        <li><a href="">CG1101</a></li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li><a href="">Following Modules</a></li>
+        <li><a href="">CS3216</a></li>
+        <li><a href="">EE4210</a></li>
+    </ul>
+
+*@
