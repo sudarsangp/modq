@@ -1,0 +1,67 @@
+﻿@model ModQ.Models.QuizViewModel
+@{
+    ViewBag.Title = "_QuizPartial";
+}
+<div class="row">
+    <div class="col-md-2">
+        <h2>Quiz</h2>
+    </div>
+    <div class="col-md-5">
+        <h2>@Html.LabelFor(model => model.Faculty) @Html.DisplayFor(model => model.Faculty) </h2>
+    </div>
+    <div class="col-md-5">
+        <h2>@Html.LabelFor(model => model.Module) @Html.DisplayFor(model => model.Module) </h2>
+    </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            @Html.LabelFor(model => model.Question) @Html.DisplayFor(model => model.Question)
+        </h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    @Html.LabelFor(model => model.FirstOption) @Html.DisplayFor(model => model.FirstOption)
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    @Html.LabelFor(model => model.SecondOption) @Html.DisplayFor(model => model.SecondOption)
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    @Html.LabelFor(model => model.ThirdOption) @Html.DisplayFor(model => model.ThirdOption)
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    @Html.LabelFor(model => model.FourthOption) @Html.DisplayFor(model => model.FourthOption)
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+

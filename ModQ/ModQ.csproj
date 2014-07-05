@@ -161,11 +161,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
+    <Compile Include="Controllers\QuizCRUDController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\QuizModel.cs" />
+    <Compile Include="Models\QuizViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -222,6 +225,12 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Quiz\LoginLanding.cshtml" />
+    <Content Include="Views\QuizCRUD\Create.cshtml" />
+    <Content Include="Views\QuizCRUD\Delete.cshtml" />
+    <Content Include="Views\QuizCRUD\Details.cshtml" />
+    <Content Include="Views\QuizCRUD\Edit.cshtml" />
+    <Content Include="Views\QuizCRUD\Index.cshtml" />
+    <Content Include="Views\Quiz\_QuizPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

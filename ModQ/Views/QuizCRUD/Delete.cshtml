@@ -1,0 +1,80 @@
+﻿@model ModQ.Models.QuizModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>QuizModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Faculty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Faculty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Module)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Module)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Question)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstOption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOption)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondOption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondOption)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThirdOption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThirdOption)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FourthOption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FourthOption)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

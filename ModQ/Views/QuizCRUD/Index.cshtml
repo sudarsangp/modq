@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ModQ.Models.QuizModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Faculty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Module)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Question)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondOption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThirdOption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FourthOption)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Faculty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Module)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstOption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondOption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThirdOption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FourthOption)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

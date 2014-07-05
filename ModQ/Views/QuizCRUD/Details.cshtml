@@ -1,0 +1,74 @@
+﻿@model ModQ.Models.QuizModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QuizModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Faculty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Faculty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Module)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Module)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Question)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstOption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOption)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondOption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondOption)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThirdOption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThirdOption)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FourthOption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FourthOption)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
