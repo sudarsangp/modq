@@ -53,3 +53,5 @@ c:\users\sudarsan\documents\visual studio 2013\Projects\ModQ\ModQ\bin\Microsoft.
 c:\users\sudarsan\documents\visual studio 2013\Projects\ModQ\ModQ\obj\Debug\ModQ.csprojResolveAssemblyReference.cache
 c:\users\sudarsan\documents\visual studio 2013\Projects\ModQ\ModQ\obj\Debug\ModQ.dll
 c:\users\sudarsan\documents\visual studio 2013\Projects\ModQ\ModQ\obj\Debug\ModQ.pdb
+C:\Users\Sudarsan\documents\visual studio 2013\Projects\ModQ\ModQ\obj\Debug\ModQ.Migrations.FirstMigration.resources
+C:\Users\Sudarsan\documents\visual studio 2013\Projects\ModQ\ModQ\obj\Debug\ModQ.csproj.GenerateResource.Cache

@@ -30,5 +30,16 @@ namespace ModQ.Models
         public string FourthOption { get; set; }
 
         public int HiddenIndex { get; set; }
+
+        public int OptionOne = 1;
+        public int OptionTwo = 2;
+        public int OptionThree = 3;
+        public int OptionFour = 4;
+
+        public string AnswerGroup;
+
+        public int QuestionId { get; set; }
+
+        public bool CorrectChoice { get; set; }
     }
 }

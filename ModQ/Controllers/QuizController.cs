@@ -27,6 +27,7 @@ namespace ModQ.Controllers
                 output.SecondOption = eachQuiz.SecondOption;
                 output.ThirdOption = eachQuiz.ThirdOption;
                 output.FourthOption = eachQuiz.FourthOption;
+                output.QuestionId = eachQuiz.ID;
             }
             else
             {
@@ -46,6 +47,7 @@ namespace ModQ.Controllers
                     output.SecondOption = requiredRow.ElementAt(0).SecondOption;
                     output.ThirdOption = requiredRow.ElementAt(0).ThirdOption;
                     output.FourthOption = requiredRow.ElementAt(0).FourthOption;
+                    output.QuestionId = requiredRow.ElementAt(0).ID;
                 }
             }
           
@@ -86,7 +88,7 @@ namespace ModQ.Controllers
         {
             int currentIndex = inputModel.HiddenIndex;
             QuizViewModel model = null;
-            if (currentIndex > 1)
+            if (currentIndex > 0)
             {
                 currentIndex -= 1;
                 model = QuizModelToViewModel(currentIndex);
@@ -98,6 +100,65 @@ namespace ModQ.Controllers
                 model.HiddenIndex = currentIndex;
             }
             return View("LoginLanding", model);
+        }
+
+         public bool AnswerCheck(string answerGroup, QuizViewModel inputModel)
+        {
+            var fromDb = db.QuizModels.SqlQuery("Select * from QuizModels Where ID = " + inputModel.QuestionId);
+            var model = new QuizViewModel();
+             if (answerGroup == inputModel.OptionOne.ToString())
+             {
+                 if (fromDb.ElementAt(0).Answer == fromDb.ElementAt(0).FirstOption)
+                 {
+                     // correct
+                     model.CorrectChoice = true;
+                 }
+                 else
+                 {
+                     //incorrect
+                     model.CorrectChoice = false;
+                 }
+             }
+             if (answerGroup == inputModel.OptionTwo.ToString())
+             {
+                 if (fromDb.ElementAt(0).Answer == fromDb.ElementAt(0).SecondOption)
+                 {
+                     // correct
+                     model.CorrectChoice = true;
+                 }
+                 else
+                 {
+                     //incorrect
+                     model.CorrectChoice = false;
+                 }
+             }
+             if (answerGroup == inputModel.OptionThree.ToString())
+             {
+                 if (fromDb.ElementAt(0).Answer == fromDb.ElementAt(0).ThirdOption)
+                 {
+                     // correct
+                     model.CorrectChoice = true;
+                 }
+                 else
+                 {
+                     //incorrect
+                     model.CorrectChoice = false;
+                 }
+             }
+             if (answerGroup == inputModel.OptionFour.ToString())
+             {
+                 if (fromDb.ElementAt(0).Answer == fromDb.ElementAt(0).FourthOption)
+                 {
+                     // correct
+                    model.CorrectChoice = true;
+                 }
+                 else
+                 {
+                     //incorrect
+                     model.CorrectChoice = false;
+                 }
+             }
+             return model.CorrectChoice;
         }
     }
 }

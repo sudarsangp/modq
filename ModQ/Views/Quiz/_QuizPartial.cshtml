@@ -1,7 +1,9 @@
-﻿@model ModQ.Models.QuizViewModel
+﻿@using ModQ.Controllers
+@model ModQ.Models.QuizViewModel
 @{
     ViewBag.Title = "_QuizPartial";
 }
+
 <div class="row">
     <div class="col-md-2">
         <h2>Quiz</h2>
@@ -14,54 +16,56 @@
     </div>
 
 </div>
+@using (Html.BeginForm("AnswerCheck", "Quiz", FormMethod.Post))
+{
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h4 class="panel-title">
-            @Html.LabelFor(model => model.Question) @Html.DisplayFor(model => model.Question)
-        </h4>
-    </div>
-</div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            @Html.LabelFor(model => model.Question) @Html.DisplayFor(model => model.Question)
+                        </h4>
+                    </div>
+                </div>
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    @Html.LabelFor(model => model.FirstOption) @Html.DisplayFor(model => model.FirstOption)
-                </h4>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    @Html.LabelFor(model => model.SecondOption) @Html.DisplayFor(model => model.SecondOption)
-                </h4>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    @Html.LabelFor(model => model.ThirdOption) @Html.DisplayFor(model => model.ThirdOption)
-                </h4>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="panel panel-danger">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    @Html.LabelFor(model => model.FourthOption) @Html.DisplayFor(model => model.FourthOption)
-                </h4>
-            </div>
-        </div>
-    </div>
-</div>
-
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default options">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    @Html.RadioButtonFor(model => model.AnswerGroup, Model.OptionOne) @Html.LabelFor(model => model.FirstOption) @Html.DisplayFor(model => model.FirstOption)
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default options">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    @Html.RadioButtonFor(model => model.AnswerGroup, Model.OptionTwo)  @Html.LabelFor(model => model.SecondOption) @Html.DisplayFor(model => model.SecondOption)
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default options">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    @Html.RadioButtonFor(model => model.AnswerGroup, Model.OptionThree) @Html.LabelFor(model => model.ThirdOption) @Html.DisplayFor(model => model.ThirdOption)
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default options">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    @Html.RadioButtonFor(model => model.AnswerGroup, Model.OptionFour)  @Html.LabelFor(model => model.FourthOption) @Html.DisplayFor(model => model.FourthOption)
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @Html.HiddenFor(model => model.QuestionId)
+                }
