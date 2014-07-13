@@ -169,8 +169,13 @@
     <Compile Include="Migrations\201407071444451_FirstMigration.Designer.cs">
       <DependentUpon>201407071444451_FirstMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407130458352_AnswerDetailsIncluded.cs" />
+    <Compile Include="Migrations\201407130458352_AnswerDetailsIncluded.Designer.cs">
+      <DependentUpon>201407130458352_AnswerDetailsIncluded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AnswerResultViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\QuizModel.cs" />
     <Compile Include="Models\QuizViewModel.cs" />
@@ -178,6 +183,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Quiz.mdf" />
+    <Content Include="App_Data\Quiz_log.ldf">
+      <DependentUpon>Quiz.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\customCss\loginLanding.css" />
@@ -238,9 +247,7 @@
     <Content Include="Views\QuizCRUD\Index.cshtml" />
     <Content Include="Views\Quiz\_QuizPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -251,6 +258,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201407071444451_FirstMigration.resx">
       <DependentUpon>201407071444451_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407130458352_AnswerDetailsIncluded.resx">
+      <DependentUpon>201407130458352_AnswerDetailsIncluded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

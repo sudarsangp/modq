@@ -55,3 +55,4 @@ c:\users\sudarsan\documents\visual studio 2013\Projects\ModQ\ModQ\obj\Debug\ModQ
 c:\users\sudarsan\documents\visual studio 2013\Projects\ModQ\ModQ\obj\Debug\ModQ.pdb
 C:\Users\Sudarsan\documents\visual studio 2013\Projects\ModQ\ModQ\obj\Debug\ModQ.Migrations.FirstMigration.resources
 C:\Users\Sudarsan\documents\visual studio 2013\Projects\ModQ\ModQ\obj\Debug\ModQ.csproj.GenerateResource.Cache
+C:\Users\Sudarsan\documents\visual studio 2013\Projects\ModQ\ModQ\obj\Debug\ModQ.Migrations.AnswerDetailsIncluded.resources

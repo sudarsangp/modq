@@ -20,6 +20,8 @@ namespace ModQ.Models
         public string FourthOption { get; set; }
 
         public string Answer { get; set; }
+
+        public string AnswerDetails { get; set; }
     }
 
     public class QuizDBContext : DbContext

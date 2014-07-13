@@ -39,7 +39,10 @@ namespace ModQ.Migrations
                     SecondOption = "Provide static binding",
                     ThirdOption = "Enables operator overloading",
                     FourthOption = "Enables operator overriding",
-                    Answer = "Provide Dynamic binding"
+                    Answer = "Provide Dynamic binding",
+                    AnswerDetails = "The virtual keyword is used to provide dynamic binding. Useful in cases where there could be a bank account class function printInterest()" +
+                                    "The subclass could inherit from base virtual class and provide a new implementation of the printInterest(). In runtime approriate function" +
+                                    "would be called based on the underlying type of the class"
                 },
                 new QuizModel
                 {
@@ -50,7 +53,9 @@ namespace ModQ.Migrations
                     SecondOption = "Collection of terms that do not contain variables",
                     ThirdOption = "Collection of terms that contain only variables",
                     FourthOption = "Collection of terms that do not contain constants",
-                    Answer = "Collection of terms that do not contain variables"
+                    Answer = "Collection of terms that do not contain variables",
+                    AnswerDetails = "The collections of terms that do not contain variables is called Herbrand's universe. For more information refer to" +
+                                    "http://mathworld.wolfram.com/HerbrandUniverse.html"
                 },
                 new QuizModel
                 {
@@ -61,7 +66,8 @@ namespace ModQ.Migrations
                     SecondOption = "IVT cannot be applied to continuous funcitons",
                     ThirdOption = "It is not possible to show the polynomial has a real root between a and b",
                     FourthOption = "We can find a point c in [a,b] such that f(c) = y where function f(x) is continuous in a open interval (a,b) and for any value y in range f(a) < y < f(b)",
-                    Answer = "We can find a point c in [a,b] such that f(c) = y where function f(x) is continuous in a closed interval [a,b] and for any value y in range f(a) <= y <= f(b)"
+                    Answer = "We can find a point c in [a,b] such that f(c) = y where function f(x) is continuous in a closed interval [a,b] and for any value y in range f(a) <= y <= f(b)",
+                    AnswerDetails = "A very importatnt theorem in calculus and is used for solving many problems. For details refer to http://en.wikipedia.org/wiki/Intermediate_value_theorem"
                 },
                 new QuizModel
                 {
@@ -72,7 +78,8 @@ namespace ModQ.Migrations
                     SecondOption = "Flux remains same",
                     ThirdOption = "Flux becomes twice the original value",
                     FourthOption = "Flux ibecomes four times the original valueof the box",
-                    Answer = "Flux remains same"
+                    Answer = "Flux remains same",
+                    AnswerDetails = "Flux remains the same. Based on the formula for electric flux the net effect becommes zero"
                 },
                 new QuizModel
                 {
@@ -83,7 +90,8 @@ namespace ModQ.Migrations
                     SecondOption = "excess charge becomes zero",
                     ThirdOption = "excess charge resides on the surface",
                     FourthOption = "excess charge becomes infinite",
-                    Answer = "excess charge resides on the surface"
+                    Answer = "excess charge resides on the surface",
+                    AnswerDetails = "Excess charge can reside only on the surface. "
                 },
                 new QuizModel
                 {
@@ -94,7 +102,8 @@ namespace ModQ.Migrations
                     SecondOption = "each row in truth table corresponds to one cell i K-map",
                     ThirdOption = "adjacent (horizontal or vertical) cells have only one variable changing from 0 to 1 or vice versa",
                     FourthOption = "all of the above",
-                    Answer = "all of the above"
+                    Answer = "all of the above",
+                    AnswerDetails = "K-map is visual representation for simplying complex logic circuits and also ensures using minimum number of gates to achieve the result"
                 },
                 new QuizModel
                 {
@@ -105,7 +114,8 @@ namespace ModQ.Migrations
                     SecondOption = "linear elements and linear controlled sources",
                     ThirdOption = "non-linear elements and linear controlled sources",
                     FourthOption = "non-linear elements and non-linear controlled sources",
-                    Answer = "linear elements and linear controlled sources"
+                    Answer = "linear elements and linear controlled sources",
+                    AnswerDetails = "when there are non-linear elements or sources in the circuit princple of superposition cannot be applied"
                 });
         }
     }

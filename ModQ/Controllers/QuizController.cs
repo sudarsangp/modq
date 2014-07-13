@@ -102,10 +102,11 @@ namespace ModQ.Controllers
             return View("LoginLanding", model);
         }
 
-         public bool AnswerCheck(string answerGroup, QuizViewModel inputModel)
+         public JsonResult AnswerCheck(string answerGroup, QuizViewModel inputModel)
         {
             var fromDb = db.QuizModels.SqlQuery("Select * from QuizModels Where ID = " + inputModel.QuestionId);
-            var model = new QuizViewModel();
+            var model = new AnswerResultViewModel();
+             model.AnswerDescription = fromDb.ElementAt(0).AnswerDetails;
              if (answerGroup == inputModel.OptionOne.ToString())
              {
                  if (fromDb.ElementAt(0).Answer == fromDb.ElementAt(0).FirstOption)
@@ -158,7 +159,7 @@ namespace ModQ.Controllers
                      model.CorrectChoice = false;
                  }
              }
-             return model.CorrectChoice;
+             return Json(model);
         }
     }
 }

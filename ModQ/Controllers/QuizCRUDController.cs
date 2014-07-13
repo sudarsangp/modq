@@ -46,7 +46,7 @@ namespace ModQ.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Faculty,Module,Question,FirstOption,SecondOption,ThirdOption,FourthOption,Answer")] QuizModel quizModel)
+        public ActionResult Create([Bind(Include = "ID,Faculty,Module,Question,FirstOption,SecondOption,ThirdOption,FourthOption,Answer,AnswerDetails")] QuizModel quizModel)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace ModQ.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Faculty,Module,Question,FirstOption,SecondOption,ThirdOption,FourthOption")] QuizModel quizModel)
+        public ActionResult Edit([Bind(Include = "ID,Faculty,Module,Question,FirstOption,SecondOption,ThirdOption,FourthOption,Answer,AnswerDetails")] QuizModel quizModel)
         {
             if (ModelState.IsValid)
             {

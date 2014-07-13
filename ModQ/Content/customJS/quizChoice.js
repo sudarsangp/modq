@@ -10,14 +10,16 @@
 
             })
             .success(function(data) {
-
-                if (data == "True") {
+                
+                $('#answerDescription').html(data.AnswerDescription);
+                if (data.CorrectChoice) {
                     thisObject.addClass('panel-success');
 
                 } else {
                     thisObject.addClass('panel-danger');
 
                 }
+
             })
             .fail(function() {
                 alert("error");
