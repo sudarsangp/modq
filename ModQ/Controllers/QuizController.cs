@@ -54,13 +54,30 @@ namespace ModQ.Controllers
             return output;
         }
 
-        // GET: Quiz
+        private Dictionary<string, int> GetFacultyAndNumberOfQuestions()
+        {
+            var result = new Dictionary<string, int>();
+            var entireDb = db.QuizModels.SqlQuery("Select * from QuizModels");
+            int eq = 0, socq = 0, bq = 0, sq = 0;
+            eq += entireDb.Count(row => row.Faculty.Equals("Engineering"));
+            socq += entireDb.Count(row => row.Faculty.Equals("Computing"));
+            bq += entireDb.Count(row => row.Faculty.Equals("Business"));
+            sq += entireDb.Count(row => row.Faculty.Equals("Science"));
+            result.Add("Engineering", eq);
+            result.Add("Computing", socq);
+            result.Add("Business", bq);
+            result.Add("Science", sq);
+            return result;
+        }
+
+            // GET: Quiz
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult LoginLanding()
         {
             const int startIndex = 0;
             var model = QuizModelToViewModel(startIndex);
             model.HiddenIndex = startIndex;
+            model.NumberOfQuestionsByFaculty = GetFacultyAndNumberOfQuestions();
             return View(model);
         }
 
@@ -80,6 +97,7 @@ namespace ModQ.Controllers
                 model = QuizModelToViewModel(currentIndex);
                 model.HiddenIndex = currentIndex;
             }
+            model.NumberOfQuestionsByFaculty = GetFacultyAndNumberOfQuestions();
             return View("LoginLanding", model);
         }
 
@@ -99,6 +117,7 @@ namespace ModQ.Controllers
                 model = QuizModelToViewModel(currentIndex);
                 model.HiddenIndex = currentIndex;
             }
+            model.NumberOfQuestionsByFaculty = GetFacultyAndNumberOfQuestions();
             return View("LoginLanding", model);
         }
 
