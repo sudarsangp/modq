@@ -10,59 +10,59 @@ namespace ModQ.Controllers
     [Authorize]
     public class QuizController : Controller
     {
-        private QuizDBContext db = new QuizDBContext();
+        private readonly QuizDBContext _db = new QuizDBContext();
 
         private QuizViewModel QuizModelToViewModel(int index)
         {
-            QuizModel eachQuiz;
             var idList = new List<int>();
             var output = new QuizViewModel();
             if (index == 0)
             {
-                eachQuiz = db.QuizModels.First();
-                output.Faculty = eachQuiz.Faculty;
-                output.Module = eachQuiz.Module;
-                output.Question = eachQuiz.Question;
-                output.FirstOption = eachQuiz.FirstOption;
-                output.SecondOption = eachQuiz.SecondOption;
-                output.ThirdOption = eachQuiz.ThirdOption;
-                output.FourthOption = eachQuiz.FourthOption;
-                output.QuestionId = eachQuiz.ID;
+                QuizModel eachQuiz = _db.QuizModels.First();
+                output = MapQuizModelToQuizViewModel(eachQuiz);
             }
             else
             {
-                var queryResult = db.QuizModels.SqlQuery("Select * from QuizModels");
-                foreach (var row in queryResult)
-                {
-                    idList.Add(row.ID);
-                }
+                var queryResult = _db.QuizModels.Select(data => data);
+                idList.AddRange(queryResult.Select(row => row.ID));
                 if (index <= idList.Count - 1) { 
                     int requiredId = idList.ElementAt(index);
-           
-                    var requiredRow = db.QuizModels.SqlQuery("Select * from QuizModels Where ID = " + requiredId);
-                    output.Faculty = requiredRow.ElementAt(0).Faculty;
-                    output.Module = requiredRow.ElementAt(0).Module;
-                    output.Question = requiredRow.ElementAt(0).Question;
-                    output.FirstOption = requiredRow.ElementAt(0).FirstOption;
-                    output.SecondOption = requiredRow.ElementAt(0).SecondOption;
-                    output.ThirdOption = requiredRow.ElementAt(0).ThirdOption;
-                    output.FourthOption = requiredRow.ElementAt(0).FourthOption;
-                    output.QuestionId = requiredRow.ElementAt(0).ID;
+
+                    var requiredRow = _db.QuizModels.First(quiz => quiz.ID == requiredId);
+
+                    output = MapQuizModelToQuizViewModel(requiredRow);
                 }
             }
           
             return output;
         }
 
+        private QuizViewModel MapQuizModelToQuizViewModel(QuizModel input)
+        {
+            var output = new QuizViewModel
+            {
+                Faculty = input.Faculty,
+                Module = input.Module,
+                Question = input.Question,
+                FirstOption = input.FirstOption,
+                SecondOption = input.SecondOption,
+                ThirdOption = input.ThirdOption,
+                FourthOption = input.FourthOption,
+                QuestionId = input.ID
+            };
+            return output;
+        }
+
         private Dictionary<string, int> GetFacultyAndNumberOfQuestions()
         {
             var result = new Dictionary<string, int>();
-            var entireDb = db.QuizModels.SqlQuery("Select * from QuizModels");
+            
             int eq = 0, socq = 0, bq = 0, sq = 0;
-            eq += entireDb.Count(row => row.Faculty.Equals("Engineering"));
-            socq += entireDb.Count(row => row.Faculty.Equals("Computing"));
-            bq += entireDb.Count(row => row.Faculty.Equals("Business"));
-            sq += entireDb.Count(row => row.Faculty.Equals("Science"));
+            eq = _db.QuizModels.Count(quiz => quiz.Faculty.Equals("Engineering"));
+            socq = _db.QuizModels.Count(quiz => quiz.Faculty.Equals("Computing"));
+            bq = _db.QuizModels.Count(quiz => quiz.Faculty.Equals("Business"));
+            sq = _db.QuizModels.Count(quiz => quiz.Faculty.Equals("Science"));
+           
             result.Add("Engineering", eq);
             result.Add("Computing", socq);
             result.Add("Business", bq);
@@ -86,7 +86,7 @@ namespace ModQ.Controllers
         {
             int currentIndex = inputModel.HiddenIndex;
             QuizViewModel model = null;
-            if (currentIndex < db.QuizModels.Count() - 1)
+            if (currentIndex < _db.QuizModels.Count() - 1)
             {
                 currentIndex += 1;
                 model = QuizModelToViewModel(currentIndex);
@@ -123,12 +123,12 @@ namespace ModQ.Controllers
 
          public JsonResult AnswerCheck(string answerGroup, QuizViewModel inputModel)
         {
-            var fromDb = db.QuizModels.SqlQuery("Select * from QuizModels Where ID = " + inputModel.QuestionId);
+            var fromDb = _db.QuizModels.First(quiz => quiz.ID == inputModel.QuestionId);
             var model = new AnswerResultViewModel();
-             model.AnswerDescription = fromDb.ElementAt(0).AnswerDetails;
+             model.AnswerDescription = fromDb.AnswerDetails;
              if (answerGroup == inputModel.OptionOne.ToString())
              {
-                 if (fromDb.ElementAt(0).Answer == fromDb.ElementAt(0).FirstOption)
+                 if (fromDb.Answer == fromDb.FirstOption)
                  {
                      // correct
                      model.CorrectChoice = true;
@@ -141,7 +141,7 @@ namespace ModQ.Controllers
              }
              if (answerGroup == inputModel.OptionTwo.ToString())
              {
-                 if (fromDb.ElementAt(0).Answer == fromDb.ElementAt(0).SecondOption)
+                 if (fromDb.Answer == fromDb.SecondOption)
                  {
                      // correct
                      model.CorrectChoice = true;
@@ -154,7 +154,7 @@ namespace ModQ.Controllers
              }
              if (answerGroup == inputModel.OptionThree.ToString())
              {
-                 if (fromDb.ElementAt(0).Answer == fromDb.ElementAt(0).ThirdOption)
+                 if (fromDb.Answer == fromDb.ThirdOption)
                  {
                      // correct
                      model.CorrectChoice = true;
@@ -167,7 +167,7 @@ namespace ModQ.Controllers
              }
              if (answerGroup == inputModel.OptionFour.ToString())
              {
-                 if (fromDb.ElementAt(0).Answer == fromDb.ElementAt(0).FourthOption)
+                 if (fromDb.Answer == fromDb.FourthOption)
                  {
                      // correct
                     model.CorrectChoice = true;
