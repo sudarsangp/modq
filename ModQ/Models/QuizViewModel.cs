@@ -42,6 +42,7 @@ namespace ModQ.Models
 
         public bool CorrectChoice { get; set; }
 
-        public Dictionary<string,int> NumberOfQuestionsByFaculty { get; set; } 
+        public Dictionary<string,int> NumberOfQuestionsByFaculty { get; set; }
+
     }
 }

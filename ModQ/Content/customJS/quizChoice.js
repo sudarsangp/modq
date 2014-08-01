@@ -29,4 +29,17 @@
         });
     });
 
+    //$('a.quizByFaculty').on('click', function() {
+    //    console.log($(this).html());
+    //    $.post("QuizByFaculty", function() {
+
+    //        })
+    //        .success(function() {
+    //            alert("success");
+    //        })
+    //        .fail(function() {
+    //        alert("quizbyfaculty error");
+    //    });
+    //});
+
 });

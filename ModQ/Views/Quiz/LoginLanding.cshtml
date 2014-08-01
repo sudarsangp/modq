@@ -21,36 +21,38 @@
                 </a>
             </h4>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
-            <div class="panel-body">
-                <table class="table">
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-pencil text-primary"></span><a href="#">Engineering</a>
-                            <span class="badge">@Model.NumberOfQuestionsByFaculty["Engineering"]</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-flash text-success"></span><a href="#">Computing</a>
-                            <span class="badge">@Model.NumberOfQuestionsByFaculty["Computing"]</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-file text-info"></span><a href="#">Science</a>
-                            <span class="badge">@Model.NumberOfQuestionsByFaculty["Science"]</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-comment text-success"></span><a href="#">Business</a>
-                            <span class="badge">@Model.NumberOfQuestionsByFaculty["Business"]</span>
-                        </td>
-                    </tr>
-                </table>
+          
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil text-primary"></span>@Html.ActionLink("Engineering", "QuizByFaculty", "Quiz", new { quizByFaculty = "Engineering", hiddenIndex = @Model.HiddenIndex }, null)
+                                <span class="badge">@Model.NumberOfQuestionsByFaculty["Engineering"]</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="glyphicon glyphicon-flash text-success"></span>@Html.ActionLink("Computing", "QuizByFaculty", "Quiz", new { quizByFaculty = "Computing", hiddenIndex = @Model.HiddenIndex }, null)
+                                <span class="badge">@Model.NumberOfQuestionsByFaculty["Computing"]</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="glyphicon glyphicon-file text-info"></span>@Html.ActionLink("Science", "QuizByFaculty", "Quiz", new { quizByFaculty = "Science", hiddenIndex = @Model.HiddenIndex }, null)
+                                <span class="badge">@Model.NumberOfQuestionsByFaculty["Science"]</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="glyphicon glyphicon-comment text-success"></span>@Html.ActionLink("Business", "QuizByFaculty", "Quiz", new { quizByFaculty = "Business", hiddenIndex = @Model.HiddenIndex }, null)
+                                <span class="badge">@Model.NumberOfQuestionsByFaculty["Business"]</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
+     
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -155,6 +157,8 @@
         @using (Html.BeginForm("PreviousQuestion", "Quiz", FormMethod.Post))
         {
             <input type="hidden" name="HiddenIndex" id="HiddenIndex" value="@Model.HiddenIndex" />
+            <input type="hidden" name="Faculty" id="Faculty" value="@Model.Faculty"/>
+            <input type="hidden" name="Question" id="Question" value="@Model.Question"/>
             <div class="col-md-2">
                 <input type="submit" class="btn btn-primary" value="Prev">
             </div>
@@ -162,6 +166,8 @@
         @using (Html.BeginForm("NextQuestion", "Quiz", FormMethod.Post))
         {
             <input type="hidden" name="HiddenIndex" id="HiddenIndex" value="@Model.HiddenIndex" />
+            <input type="hidden" name="Faculty" id="Faculty" value="@Model.Faculty"/>
+            <input type="hidden" name="Question" id="Question" value="@Model.Question"/>
             <div class=" pull-right ">
                 <input type="submit" class="btn btn-primary" value="Next" >
             </div>

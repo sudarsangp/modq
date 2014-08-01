@@ -246,6 +246,7 @@
     <Content Include="Views\QuizCRUD\Edit.cshtml" />
     <Content Include="Views\QuizCRUD\Index.cshtml" />
     <Content Include="Views\Quiz\_QuizPartial.cshtml" />
+    <Content Include="Views\Quiz\ErrorPage.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
