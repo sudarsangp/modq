@@ -1,4 +1,5 @@
 ﻿@using System.Activities.Expressions
+@using ModQ.Models
 @model ModQ.Models.QuizViewModel
 @{
     ViewBag.Title = "LoginLanding";
@@ -27,25 +28,25 @@
                     <table class="table">
                         <tr>
                             <td>
-                                <span class="glyphicon glyphicon-pencil text-primary"></span>@Html.ActionLink("Engineering", "QuizByFaculty", "Quiz", new { quizByFaculty = "Engineering", hiddenIndex = @Model.HiddenIndex }, null)
+                                <span class="glyphicon glyphicon-pencil text-primary"></span><a class="quizByFacultyLink">Engineering</a>
                                 <span class="badge">@Model.NumberOfQuestionsByFaculty["Engineering"]</span>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <span class="glyphicon glyphicon-flash text-success"></span>@Html.ActionLink("Computing", "QuizByFaculty", "Quiz", new { quizByFaculty = "Computing", hiddenIndex = @Model.HiddenIndex }, null)
+                                <span class="glyphicon glyphicon-flash text-success"></span><a class="quizByFacultyLink">Computing</a>
                                 <span class="badge">@Model.NumberOfQuestionsByFaculty["Computing"]</span>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <span class="glyphicon glyphicon-file text-info"></span>@Html.ActionLink("Science", "QuizByFaculty", "Quiz", new { quizByFaculty = "Science", hiddenIndex = @Model.HiddenIndex }, null)
+                                <span class="glyphicon glyphicon-file text-info"></span><a class="quizByFacultyLink">Science</a>
                                 <span class="badge">@Model.NumberOfQuestionsByFaculty["Science"]</span>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <span class="glyphicon glyphicon-comment text-success"></span>@Html.ActionLink("Business", "QuizByFaculty", "Quiz", new { quizByFaculty = "Business", hiddenIndex = @Model.HiddenIndex }, null)
+                                <span class="glyphicon glyphicon-comment text-success"></span><a class="quizByFacultyLink">Business</a>
                                 <span class="badge">@Model.NumberOfQuestionsByFaculty["Business"]</span>
                             </td>
                         </tr>
@@ -68,22 +69,22 @@
                 <table class="table">
                     <tr>
                         <td>
-                            <a href="">MA1505</a>
+                            <a class="quizByModuleLink">MA1505</a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <a href="">EG2401</a>
+                            <a class="quizByModuleLink">EG2401</a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <a href="">CS1231</a>
+                            <a class="quizByModuleLink">CS1231</a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <a href="">CG1101</a>
+                            <a class="quizByModuleLink">CG1101</a>
                         </td>
                     </tr>
                 </table>
@@ -104,12 +105,12 @@
                 <table class="table">
                     <tr>
                         <td>
-                            <a href="">GEK1001</a>
+                            <a class="quizByModuleLink">GEK1001</a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <a href="">EE4210</a>
+                            <a class="quizByModuleLink">EE4210</a>
                         </td>
                     </tr>
                 </table>
@@ -154,29 +155,18 @@
     @Html.Partial("_QuizPartial")    
     
     <div class="row">
-        @using (Html.BeginForm("PreviousQuestion", "Quiz", FormMethod.Post))
-        {
-            <input type="hidden" name="HiddenIndex" id="HiddenIndex" value="@Model.HiddenIndex" />
-            <input type="hidden" name="Faculty" id="Faculty" value="@Model.Faculty"/>
-            <input type="hidden" name="Question" id="Question" value="@Model.Question"/>
+      
             <div class="col-md-2">
-                <input type="submit" class="btn btn-primary" value="Prev">
+                <button id="ajaxPrev" class="btn btn-primary">Prev</button>
             </div>
-        }
-        @using (Html.BeginForm("NextQuestion", "Quiz", FormMethod.Post))
-        {
-            <input type="hidden" name="HiddenIndex" id="HiddenIndex" value="@Model.HiddenIndex" />
-            <input type="hidden" name="Faculty" id="Faculty" value="@Model.Faculty"/>
-            <input type="hidden" name="Question" id="Question" value="@Model.Question"/>
             <div class=" pull-right ">
-                <input type="submit" class="btn btn-primary" value="Next" >
+                <button id="ajaxNext" class="btn btn-primary">Next</button>
             </div>
-        }
     </div>
     <br/>
     <div class="row">
         <div class="col-md-12">
-           
+            
                     <h4 class="panel-title" id="answerDescription">
                       
                     </h4>
@@ -184,26 +174,3 @@
     </div>
         
 </div>
-
-@*<div class="nav nav-sidebar">
-            <div><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Quiz by Faculty</a></div>
-            <div id="collapseOne" class="panel-collapse collapse in">
-                <div><a href="#">Engineering</a></div>
-                <div><a href="#">Computing</a></div>
-            <div><a href="#">Science</a></div>
-                </div>
-    </div>
-    <ul class="nav nav-sidebar">
-        <li><a href="">Semester Modules</a></li>
-        <li><a href="">MA1505</a></li>
-        <li><a href="">EG2401</a></li>
-        <li><a href="">CS1231</a></li>
-        <li><a href="">CG1101</a></li>
-    </ul>
-    <ul class="nav nav-sidebar">
-        <li><a href="">Following Modules</a></li>
-        <li><a href="">CS3216</a></li>
-        <li><a href="">EE4210</a></li>
-    </ul>
-
-*@

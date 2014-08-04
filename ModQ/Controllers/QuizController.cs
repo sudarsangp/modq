@@ -57,13 +57,14 @@ namespace ModQ.Controllers
         private QuizViewModel GetRequiredQuestionByFaculty(bool forward, string faculty, string question)
         {
          
-            var output = new QuizViewModel();
+            QuizViewModel output = null;
             if (faculty == null)
             {
                 return null;
             }
             var queryResult = _db.QuizModels.Select(data => data).Where(row => row.Faculty == faculty);
             var listQueryResult = queryResult.ToList();
+            int position = 0;
             for (int i = 0; i < listQueryResult.Count; i++)
             {
                 if (question == null)
@@ -92,7 +93,56 @@ namespace ModQ.Controllers
                 }
                
             }
-           
+            if (output == null && listQueryResult.Count > 0)
+            {
+                output = MapQuizModelToQuizViewModel(listQueryResult.ElementAt(position));
+            }
+            return output;
+        }
+
+        private QuizViewModel GetRequiredQuestionByModule(bool forward, string module, string question)
+        {
+
+            QuizViewModel output = null;
+            if (module == null)
+            {
+                return null;
+            }
+            var queryResult = _db.QuizModels.Select(data => data).Where(row => row.Module == module);
+            var listQueryResult = queryResult.ToList();
+            int position = 0;
+            for (int i = 0; i < listQueryResult.Count; i++)
+            {
+                if (question == null)
+                {
+                    output = MapQuizModelToQuizViewModel(listQueryResult.ElementAt(i));
+                    break;
+                }
+
+                if (listQueryResult.ElementAt(i).Question.Equals(question))
+                {
+                    if (forward && i != listQueryResult.Count - 1)
+                    {
+                        output = MapQuizModelToQuizViewModel(listQueryResult.ElementAt(i + 1));
+                        break;
+                    }
+                    else if (forward == false && i != 0)
+                    {
+                        output = MapQuizModelToQuizViewModel(listQueryResult.ElementAt(i - 1));
+                        break;
+                    }
+                    else
+                    {
+                        output = MapQuizModelToQuizViewModel(listQueryResult.ElementAt(i));
+                        break;
+                    }
+                }
+
+            }
+            if (output == null && listQueryResult.Count > 0)
+            {
+                output = MapQuizModelToQuizViewModel(listQueryResult.ElementAt(position));
+            }
             return output;
         }
 
@@ -112,7 +162,6 @@ namespace ModQ.Controllers
                 SecondOption = input.SecondOption,
                 ThirdOption = input.ThirdOption,
                 FourthOption = input.FourthOption,
-                QuestionId = input.ID
             };
             return output;
         }
@@ -151,172 +200,67 @@ namespace ModQ.Controllers
             {
                 return View("ErrorPage");
             }
-            model.HiddenIndex = startIndex;
             model.NumberOfQuestionsByFaculty = GetFacultyAndNumberOfQuestions();
             return View(model);
         }
 
         /// <summary>
-        /// Gets the required quizByFaculty option from database.
-        /// This implementation does not use the hiddenIndex attribute.
-        /// The hiddenIndex attribute is used to iterate through entire list of questions in the database.
-        /// </summary>
-        /// <param name="quizByFaculty"></param>
-        /// <param name="hiddenIndex"></param>
-        /// <returns></returns>
-        [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult QuizByFaculty(String quizByFaculty, int hiddenIndex)
-        {
-            QuizViewModel model = null;
-
-            model = GetRequiredQuestionByFaculty(false, quizByFaculty, null);
-            if (model == null)
-            {
-                return View("ErrorPage");
-            }
-            else
-            {
-                model.NumberOfQuestionsByFaculty = GetFacultyAndNumberOfQuestions();
-                return View("LoginLanding", model);
-            }
-        }
-
-        /// <summary>
-        /// Gets the input model details to get the next question
-        /// </summary>
-        /// <param name="inputModel"></param>
-        /// <returns></returns>
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult NextQuestion(QuizViewModel inputModel)
-        {
-            int currentIndex = inputModel.HiddenIndex;
-            QuizViewModel model = null;
-            if (currentIndex < _db.QuizModels.Count() - 1)
-            {
-                currentIndex += 1;
-                model = GetRequiredQuestionByFaculty(true, inputModel.Faculty, inputModel.Question);
-                if (model == null)
-                {
-                    return View("ErrorPage");
-                }
-                model.HiddenIndex = currentIndex;
-            }
-            else
-            {
-                model = GetRequiredQuestionByFaculty(true, inputModel.Faculty, inputModel.Question);
-                if (model == null)
-                {
-                    return View("ErrorPage");
-                }
-                model.HiddenIndex = currentIndex;
-            }
-            model.NumberOfQuestionsByFaculty = GetFacultyAndNumberOfQuestions();
-            return View("LoginLanding", model);
-        }
-
-        /// <summary>
-        /// Gets the input model details for the previous question
-        /// </summary>
-        /// <param name="inputModel"></param>
-        /// <returns></returns>
-         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult PreviousQuestion(QuizViewModel inputModel)
-        {
-            int currentIndex = inputModel.HiddenIndex;
-            QuizViewModel model = null;
-            if (currentIndex > 0)
-            {
-                currentIndex -= 1;
-                model = GetRequiredQuestionByFaculty(false, inputModel.Faculty, inputModel.Question);
-                if (model == null)
-                {
-                    return View("ErrorPage");
-                }
-                model.HiddenIndex = currentIndex;
-            }
-            else
-            {
-                model = GetRequiredQuestionByFaculty(false, inputModel.Faculty,  inputModel.Question);
-                if (model == null)
-                {
-                    return View("ErrorPage");
-                }
-                model.HiddenIndex = currentIndex;
-            }
-            model.NumberOfQuestionsByFaculty = GetFacultyAndNumberOfQuestions();
-            return View("LoginLanding", model);
-        }
-
-        /// <summary>
         /// Ensures the option selected by user matches the correct answer in database
         /// </summary>
-        /// <param name="answerGroup"></param>
-        /// <param name="inputModel"></param>
+        /// <param name="question"></param>
+        /// <param name="optionValue"></param>
         /// <returns></returns>
-         public JsonResult AnswerCheck(string answerGroup, QuizViewModel inputModel)
+         public JsonResult AnswerCheck(string question, string optionValue)
         {
             var model = new AnswerResultViewModel();
-            if (inputModel.QuestionId == 0)
+           
+            var fromDb = _db.QuizModels.First(quiz => quiz.Question == question);
+            model.AnswerDescription = fromDb.AnswerDetails;
+
+            model.CorrectChoice = fromDb.Answer.Equals(optionValue);
+            return Json(model);
+        }
+
+        /// <summary>
+        /// Gets the next question for display
+        /// </summary>
+        /// <param name="question"></param>
+        /// <param name="quizByTypeText"></param>
+        /// <param name="quizByTypeValue"></param>
+        /// <returns></returns>
+         public JsonResult AjaxNextQuestion(string question, string quizByTypeText, string quizByTypeValue)
+         {
+             QuizViewModel output = null;
+             if (quizByTypeText.Equals("faculty"))
+             {
+                 output = GetRequiredQuestionByFaculty(true, quizByTypeValue, question);
+             }
+             if (quizByTypeText.Equals("module"))
+             {
+                 output = GetRequiredQuestionByModule(true, quizByTypeValue, question);
+             }
+            return Json(output);
+        }
+
+        /// <summary>
+        /// gets the previous question for display
+        /// </summary>
+        /// <param name="question"></param>
+        /// <param name="quizByTypeText"></param>
+        /// <param name="quizByTypeValue"></param>
+        /// <returns></returns>
+         public JsonResult AjaxPreviousQuestion(string question, string quizByTypeText, string quizByTypeValue)
+        {
+            QuizViewModel output = null;
+            if (quizByTypeText.Equals("faculty"))
             {
-                model.CorrectChoice = false;
-                return Json(model);
+                output = GetRequiredQuestionByFaculty(false, quizByTypeValue, question);
             }
-            var fromDb = _db.QuizModels.First(quiz => quiz.ID == inputModel.QuestionId);
-            
-             model.AnswerDescription = fromDb.AnswerDetails;
-             if (answerGroup == inputModel.OptionOne.ToString())
-             {
-                 if (fromDb.Answer == fromDb.FirstOption)
-                 {
-                     // correct
-                     model.CorrectChoice = true;
-                 }
-                 else
-                 {
-                     //incorrect
-                     model.CorrectChoice = false;
-                 }
-             }
-             if (answerGroup == inputModel.OptionTwo.ToString())
-             {
-                 if (fromDb.Answer == fromDb.SecondOption)
-                 {
-                     // correct
-                     model.CorrectChoice = true;
-                 }
-                 else
-                 {
-                     //incorrect
-                     model.CorrectChoice = false;
-                 }
-             }
-             if (answerGroup == inputModel.OptionThree.ToString())
-             {
-                 if (fromDb.Answer == fromDb.ThirdOption)
-                 {
-                     // correct
-                     model.CorrectChoice = true;
-                 }
-                 else
-                 {
-                     //incorrect
-                     model.CorrectChoice = false;
-                 }
-             }
-             if (answerGroup == inputModel.OptionFour.ToString())
-             {
-                 if (fromDb.Answer == fromDb.FourthOption)
-                 {
-                     // correct
-                    model.CorrectChoice = true;
-                 }
-                 else
-                 {
-                     //incorrect
-                     model.CorrectChoice = false;
-                 }
-             }
-             return Json(model);
+            if (quizByTypeText.Equals("module"))
+            {
+                output = GetRequiredQuestionByModule(false, quizByTypeValue, question);
+            }
+            return Json(output);
         }
     }
 }
