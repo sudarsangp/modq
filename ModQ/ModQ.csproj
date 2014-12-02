@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44302</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -162,6 +162,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Controllers\QuizCRUDController.cs" />
+    <Compile Include="Controllers\TimedQuizController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,7 +191,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\customCss\loginLanding.css" />
+    <Content Include="Content\customCss\TimeCircles.css" />
     <Content Include="Content\customJS\quizChoice.js" />
+    <Content Include="Content\customJS\quizTimer.js" />
+    <Content Include="Content\customJS\TimeCircles.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -247,6 +251,7 @@
     <Content Include="Views\QuizCRUD\Index.cshtml" />
     <Content Include="Views\Quiz\_QuizPartial.cshtml" />
     <Content Include="Views\Quiz\ErrorPage.cshtml" />
+    <Content Include="Views\TimedQuiz\HomeTimer.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

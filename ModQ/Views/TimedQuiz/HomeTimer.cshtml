@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    @Styles.Render("~/Content/customCss/TimeCircles.css")
+}
+@section Scripts{
+    @Scripts.Render("~/Content/customJS/TimeCircles.js")
+    @Scripts.Render("~/Content/customJS/quizTimer.js")
+}
+
+<div id="exampleTimer" data-timer="5" style="width: 200px; height: 200px;">
+    
+</div>
